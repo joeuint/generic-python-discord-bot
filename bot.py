@@ -1,3 +1,4 @@
+# TODO: Refactor commands into cogs
 """ATTENTION
 The following code is only intended to be used for my server.
 I am currently refactoring it to be more generic and reusable.
@@ -8,14 +9,14 @@ from discord.ext import commands
 import discord
 
 # Import other libraries
-import praw
+import requests
 from dotenv import load_dotenv
 from os import getenv
 import asyncio
 from captcha.image import ImageCaptcha
 import random
 
-VERSION = "1.0"
+VERSION = "1.1"
 
 # Load .env file
 load_dotenv()
@@ -240,7 +241,9 @@ class Fun:
     # Cat command
     @bot.command()
     async def cat(ctx):
-        pass
+        cat_api = 'https://aws.random.cat/meow'
+
+        await ctx.send(f'{requests.get(cat_api).json()["file"]}')
 
 # Run the bot
 bot.run(TOKEN)
