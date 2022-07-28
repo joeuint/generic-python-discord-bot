@@ -23,3 +23,5 @@ class Welcome(commands.Cog):
         await welcome_channel.send(embed=embed)
         print(f'{member.name} ({member.id}) has joined {member.guild.name} ({member.guild.id})')
     
+def setup(bot):
+    bot.add_cog(Welcome(bot))
