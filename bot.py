@@ -32,17 +32,20 @@ bot = commands.Bot(command_prefix='>', intents=intents)
 async def on_ready():
     print(f'{bot.user.name} has connected to Discord!')
 
-# Import Welcome Cog
+# Import welcome Cog
 bot.load_extension('cogs.welcome')
 
 # Import utility commands
 bot.load_extension('cogs.utility')
 
-# Import Moderation commands
+# Import moderation commands
 bot.load_extension('cogs.moderation')
 
 # Import fun commands
 bot.load_extension('cogs.fun')
+
+# Import polls commands
+bot.load_extension('cogs.polls')
 
 # Run the bot
 bot.run(TOKEN)
