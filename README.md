@@ -1,4 +1,5 @@
 # Generic Python Discord Bot
+![python badge](https://img.shields.io/badge/Python-000000?style=for-the-badge&logo=python&logoColor=blue)  
 Generic Python Discord Bot (feel free to call it GPDB for short) is a open source, multipurpose discord bot written in python using the [discord.py wrapper](https://github.com/Rapptz/discord.py).
 
 ## Features
