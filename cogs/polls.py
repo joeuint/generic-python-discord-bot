@@ -56,6 +56,7 @@ class Polls(commands.Cog):
 
         await message.add_reaction(check_emoji)
         await message.add_reaction(x_emoji)
+        await ctx.message.delete()
 
         # While loop to check if the time has passed
         while now() < time:
@@ -75,7 +76,7 @@ class Polls(commands.Cog):
 
         # Create the results embed
         results_embed = discord.Embed(title='Poll Results', color=0x4287f5)
-        results_embed.add_field(name=question, value=f'Yes: {check_reactions}\nNo: {x_reactions}\nAsked {time}', inline=False)
+        results_embed.add_field(name=question, value=f'Yes: {check_reactions}\nNo: {x_reactions}\nAsked <t:{time}:R>', inline=False)
 
         # Edit the message
         await message.edit(embed=results_embed)
