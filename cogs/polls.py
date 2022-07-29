@@ -36,7 +36,6 @@ class Polls(commands.Cog):
     @commands.command()
     @commands.check(isMod)
     async def create_poll(self, ctx, time, *, question):
-
         # Get the unix timestamp of the time
         time = time_str_to_dict(time)
 
@@ -54,9 +53,9 @@ class Polls(commands.Cog):
         check_emoji = '✅'
         x_emoji = '❌'
 
+        await ctx.message.delete()
         await message.add_reaction(check_emoji)
         await message.add_reaction(x_emoji)
-        await ctx.message.delete()
 
         # While loop to check if the time has passed
         while now() < time:
