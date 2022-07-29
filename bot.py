@@ -47,5 +47,21 @@ bot.load_extension('cogs.fun')
 # Import polls commands
 bot.load_extension('cogs.polls')
 
+# Error handling
+@bot.event
+async def on_command_error(ctx, error):
+    if isinstance(error, commands.CommandNotFound):
+        await ctx.send('That command does not exist')
+    elif isinstance(error, commands.MissingRequiredArgument):
+        await ctx.send('Missing required argument')
+    elif isinstance(error, commands.MissingPermissions):
+        await ctx.send('You do not have permission to use that command')
+    elif isinstance(error, commands.CheckFailure):
+        await ctx.send('You do not have permission to use that command')
+    elif isinstance(error, commands.CommandOnCooldown):
+        await ctx.send('This command is on cooldown, please try again later')
+    else:
+        await ctx.send('An error has occured')
+
 # Run the bot
 bot.run(TOKEN)
