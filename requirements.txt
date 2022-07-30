@@ -1,0 +1,4 @@
+captcha
+discord
+python-dotenv
+requests
