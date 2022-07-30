@@ -12,6 +12,14 @@ import discord
 from dotenv import load_dotenv
 from os import getenv
 
+# Replit
+try:
+    import alive
+    alive.keep_alive()
+    print("I am alive!")
+except:
+    print("keep_alive() not found")
+
 VERSION = "1.1.5"
 
 # Load .env file
