@@ -50,6 +50,7 @@ bot.load_extension('cogs.polls')
 # Error handling
 @bot.event
 async def on_command_error(ctx, error):
+    print(error)
     if isinstance(error, commands.CommandNotFound):
         await ctx.send('That command does not exist')
     elif isinstance(error, commands.MissingRequiredArgument):
