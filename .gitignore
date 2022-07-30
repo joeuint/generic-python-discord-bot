@@ -169,6 +169,12 @@ cython_debug/
 # End of https://www.toptal.com/developers/gitignore/api/dotenv,python
 
 # Custom rules (everything added below won't be overriden by 'Generate .gitignore File' if you use 'Update' option)
+# vscode
 .vscode
+
+# Replit
 .replit
 replit.nix
+poetry.lock
+pyproject.toml
+alive.py
