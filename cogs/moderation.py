@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 from time import sleep
+from aioconsole import aexec
 
 class Moderation(commands.Cog):
     def __init__(self, bot):
@@ -10,7 +11,11 @@ class Moderation(commands.Cog):
     
     These are commands that are used to assist moderators and administrators moderate the server and keep it safe
     """
-    # Create a predicate to check if the user is the server owner
+    # Check if the user is the bot owner
+    def is_bot_owner(ctx):
+        return ctx.author.id == 457910942114512930
+
+    # Create a predicate to check if the user is the bot owner
     def is_owner(ctx):
         return ctx.author.id == ctx.guild.owner.id
 
@@ -24,15 +29,24 @@ class Moderation(commands.Cog):
         return mod_role in ctx.author.roles
 
     # Eval command
-    @commands.command()
-    @commands.check(is_owner)
-    async def eval(self, ctx, *, code: str):
-        # WARNING: EVAL IS DANGEROUS AND SHOULD ONLY BE ALLOWED FOR USE BY THE SERVER OWNER! DO NOT TRUST RANDOM PEOPLE WITH THIS!
+    @commands.command(name='eval', hidden=True)
+    @commands.check(is_bot_owner)
+    async def _eval(self, ctx, *, body: str):
+        # Variables for the exec command
+        localVariables = {
+            'bot': self.bot,
+            'ctx': ctx,
+            'channel': ctx.channel,
+            'author': ctx.author,
+            'guild': ctx.guild,
+            'message': ctx.message
+        }
+        # Execute the code
         try:
-            result = eval(code)
-            await ctx.send(f'```py\n{result}\n```')
+            await aexec(body, localVariables)
+            await ctx.message.add_reaction('✅')
         except Exception as e:
-            await ctx.send(f'```py\n{e}\n```')
+            await ctx.send(f'```py\n{e}```')
     
     # Ban command
     @commands.command()

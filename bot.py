@@ -20,7 +20,7 @@ try:
 except:
     print("keep_alive() not found")
 
-VERSION = "1.2.0"
+VERSION = "1.3.0"
 
 # Load .env file
 load_dotenv()
